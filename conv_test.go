@@ -1,6 +1,14 @@
 package gocostmodel
 
-import "testing"
+import (
+	"strconv"
+	"testing"
+)
+
+var (
+	s2i = "2"
+	i2s string
+)
 
 func BenchmarkConvIntToFloat64(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -23,5 +31,17 @@ func BenchmarkConvIntToFloat32(b *testing.B) {
 func BenchmarkConvFloat32ToInt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		i1 = int(f1)
+	}
+}
+
+func BenchmarkConvStringToInt(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		i1, _ = strconv.Atoi(s2i)
+	}
+}
+
+func BenchmarkConvIntToString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		i2s = strconv.Itoa(i1)
 	}
 }

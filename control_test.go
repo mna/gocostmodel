@@ -8,6 +8,19 @@ var (
 	rng = []int{1}
 )
 
+func BenchmarkSwitch(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		switch val {
+		case 0:
+			x++
+		case 1:
+			x--
+		default:
+			x += 2
+		}
+	}
+}
+
 func BenchmarkIfEquals(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		if val == 1 {
@@ -18,7 +31,15 @@ func BenchmarkIfEquals(b *testing.B) {
 
 func BenchmarkIfNotEquals(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		if i1 != 5 {
+		if val != 5 {
+			x++
+		}
+	}
+}
+
+func BenchmarkFor1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for val < 0 {
 			x++
 		}
 	}
@@ -26,6 +47,7 @@ func BenchmarkIfNotEquals(b *testing.B) {
 
 func BenchmarkFor3(b *testing.B) {
 	for i := 0; i < b.N; i++ {
+		// loop only once, the goal is to measure the loop construct
 		for j := 0; j < val; j++ {
 			x++
 		}
@@ -41,7 +63,7 @@ func BenchmarkForRange(b *testing.B) {
 	}
 }
 
-// simple sumx funcs probably get inlined
+// simple sumx funcs get inlined (go test -c -gcflags -m)
 
 func BenchmarkFunc1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
