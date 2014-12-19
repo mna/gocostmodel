@@ -6,7 +6,7 @@ This package was inspired by Brian W. Kernighan and Rob Pike's book "The Practic
 
 This is a *cost model* that benchmarks common basic operations for the Go language. For it to be meaningful, it should be run on your target hardware, and the relative performance of operations is probably more important than the actual numbers. Examples of such results on a variety of hardware is available in the `bench/` folder.
 
-There may be places where compiler optimizations render some benchmarks moot. One known such instance is in the benchmarks that call the `sum` functions with 1, 2 and 3 arguments - the function gets inlined and the result is the timing of the body of the function, not the overhead of the function call, as desired. Any help as to how to avoid inlining while keeping the body of the callee simple is welcome.
+There may be places where compiler optimizations render some benchmarks moot. If you find any such occurrences, please open an issue or send a pull request.
 
 ## Example
 

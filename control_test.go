@@ -1,6 +1,9 @@
 package gocostmodel
 
-import "testing"
+import (
+	"math"
+	"testing"
+)
 
 var (
 	x         int
@@ -122,8 +125,6 @@ func BenchmarkSelectTrySendBuf(b *testing.B) {
 	}
 }
 
-// simple sumx funcs get inlined (go test -c -gcflags -m)
-
 func BenchmarkFunc1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		x = sum1(i1)
@@ -143,16 +144,30 @@ func BenchmarkFunc3(b *testing.B) {
 }
 
 func sum1(n int) int {
-	x := n
-	return x
+	if n > 0 {
+		return n
+	}
+
+	// instructions just to avoid inlining
+	return int(math.Pow(float64(n), 1))
 }
 
 func sum2(n1, n2 int) int {
-	x := n1 + n2
-	return x
+	if n1 > 0 {
+		x := n1 + n2
+		return x
+	}
+
+	// instructions just to avoid inlining
+	return int(math.Pow(float64(n1), 1))
 }
 
 func sum3(n1, n2, n3 int) int {
-	x := n1 + n2 + n3
-	return x
+	if n1 > 0 {
+		x := n1 + n2 + n3
+		return x
+	}
+
+	// instructions just to avoid inlining
+	return int(math.Pow(float64(n1), 1))
 }

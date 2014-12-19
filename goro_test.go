@@ -1,6 +1,7 @@
 package gocostmodel
 
 import (
+	"math"
 	"sync"
 	"testing"
 )
@@ -10,7 +11,10 @@ import (
 // it actually is.
 func xBenchmarkGoroFireForget(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		go func() {}()
+		go func() {
+			// avoid inlining
+			math.Pow(1, 1)
+		}()
 	}
 }
 

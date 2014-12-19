@@ -123,6 +123,7 @@ func BenchmarkPrintPctp(b *testing.B) {
 	}
 }
 
+// note that stringer.String gets inlined.
 func BenchmarkPrintStringer(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		fmt.Fprintf(ioutil.Discard, "%s", st)

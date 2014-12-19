@@ -1,6 +1,7 @@
 package gocostmodel
 
 import (
+	"math"
 	"net/http"
 	"testing"
 	"time"
@@ -112,7 +113,8 @@ func BenchmarkNewBigStructLitP(b *testing.B) {
 func BenchmarkNewClosure(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		fn = func() {
-			cln = i
+			// avoid inlining
+			math.Pow(float64(i), 1)
 		}
 	}
 }
