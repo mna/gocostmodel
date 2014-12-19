@@ -1,6 +1,6 @@
 # gocostmodel
 
-This package was inspired by Brian W. Kernighan and Rob Pike's book "The Practice of Programming" (Addison-Wesley, 1998). In Chapter 7 on performance, section 7.6 (Estimation):
+This package was inspired by Brian W. Kernighan and Rob Pike's book "The Practice of Programming" (Addison-Wesley, 1999). In Chapter 7 on performance, section 7.6 (Estimation):
 
 > "It's hard to estimate ahead of time how fast a program will be [...]. It's easy, though, to create a *cost model* for a language or a system, which will give you at least a rough idea of how long important operations take."
 
