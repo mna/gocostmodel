@@ -69,6 +69,15 @@ func BenchmarkForRange(b *testing.B) {
 	}
 }
 
+func BenchmarkForRangeClosedChan(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		// do not use empty range, would force go1.4
+		for _ = range closedCh {
+			x++
+		}
+	}
+}
+
 func BenchmarkSelectBlockedDefault(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		select {
