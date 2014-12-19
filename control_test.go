@@ -84,13 +84,16 @@ func BenchmarkFunc3(b *testing.B) {
 }
 
 func sum1(n int) int {
-	return n
+	x := n
+	return x
 }
 
 func sum2(n1, n2 int) int {
-	return n1 + n2
+	x := n1 + n2
+	return x
 }
 
 func sum3(n1, n2, n3 int) int {
-	return n1 + n2 + n3
+	x := n1 + n2 + n3
+	return x
 }

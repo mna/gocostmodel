@@ -8,6 +8,10 @@ import (
 var (
 	s2i = "2"
 	i2s string
+	str = "abcd"
+	s2b []byte
+	bt  = []byte{'a', 'b', 'c', 'd'}
+	b2s string
 )
 
 func BenchmarkConvIntToFloat64(b *testing.B) {
@@ -43,5 +47,17 @@ func BenchmarkConvStringToInt(b *testing.B) {
 func BenchmarkConvIntToString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		i2s = strconv.Itoa(i1)
+	}
+}
+
+func BenchmarkStringToByte(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		s2b = []byte(str)
+	}
+}
+
+func BenchmarkByteToString(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		b2s = string(bt)
 	}
 }

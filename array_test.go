@@ -8,6 +8,7 @@ var (
 	v3  = [...]int{1, 2, 3, 4, 5}
 	sl1 = []int{5, 6, 7}
 	ix  = 1
+	sln int
 )
 
 func BenchmarkArrayIndex(b *testing.B) {
@@ -31,5 +32,11 @@ func BenchmarkArrayIndex3(b *testing.B) {
 func BenchmarkArraySlicing(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sl1 = v1[1:3]
+	}
+}
+
+func BenchmarkSliceIndex(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		sln = sl1[ix]
 	}
 }
