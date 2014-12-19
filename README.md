@@ -49,3 +49,4 @@ Pull requests are welcome, but the benchmarks should be for common basic operati
 This source code is released under the [BSD 3-clause license][bsd].
 
 [bsd]: http://opensource.org/licenses/BSD-3-Clause
+

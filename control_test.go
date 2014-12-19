@@ -3,10 +3,16 @@ package gocostmodel
 import "testing"
 
 var (
-	x   int
-	val = 1
-	rng = []int{1}
+	x         int
+	val       = 1
+	rng       = []int{1}
+	blockedCh = make(chan bool)
+	closedCh  = make(chan bool)
 )
+
+func init() {
+	close(closedCh)
+}
 
 func BenchmarkSwitch(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -58,6 +64,28 @@ func BenchmarkForRange(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		// do not use empty range, would force go1.4
 		for _ = range rng {
+			x++
+		}
+	}
+}
+
+func BenchmarkSelectBlockedDefault(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		select {
+		case <-blockedCh:
+			x--
+		default:
+			x++
+		}
+	}
+}
+
+func BenchmarkSelectBlockedClosed(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		select {
+		case <-blockedCh:
+			x--
+		case <-closedCh:
 			x++
 		}
 	}
