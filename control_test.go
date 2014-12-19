@@ -149,7 +149,8 @@ func sum1(n int) int {
 	}
 
 	// instructions just to avoid inlining
-	return int(math.Pow(float64(n), 1))
+	math.Pow(float64(n), 1)
+	panic("unreachable")
 }
 
 func sum2(n1, n2 int) int {
@@ -159,7 +160,8 @@ func sum2(n1, n2 int) int {
 	}
 
 	// instructions just to avoid inlining
-	return int(math.Pow(float64(n1), 1))
+	math.Pow(float64(n1), 1)
+	panic("unreachable")
 }
 
 func sum3(n1, n2, n3 int) int {
@@ -169,5 +171,6 @@ func sum3(n1, n2, n3 int) int {
 	}
 
 	// instructions just to avoid inlining
-	return int(math.Pow(float64(n1), 1))
+	math.Pow(float64(n1), 1)
+	panic("unreachable")
 }
