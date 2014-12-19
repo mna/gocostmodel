@@ -8,10 +8,12 @@ var (
 	rng       = []int{1}
 	blockedCh = make(chan bool)
 	closedCh  = make(chan bool)
+	fullBufCh = make(chan bool, 1)
 )
 
 func init() {
 	close(closedCh)
+	fullBufCh <- true
 }
 
 func BenchmarkSwitch(b *testing.B) {
@@ -95,6 +97,26 @@ func BenchmarkSelectBlockedClosed(b *testing.B) {
 		case <-blockedCh:
 			x--
 		case <-closedCh:
+			x++
+		}
+	}
+}
+
+func BenchmarkSelectTrySend(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		select {
+		case blockedCh <- false:
+		default:
+			x++
+		}
+	}
+}
+
+func BenchmarkSelectTrySendBuf(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		select {
+		case fullBufCh <- false:
+		default:
 			x++
 		}
 	}
