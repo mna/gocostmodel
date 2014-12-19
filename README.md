@@ -8,6 +8,8 @@ This is a *cost model* that benchmarks common basic operations for the Go langua
 
 There may be places where compiler optimizations render some benchmarks moot. If you find any such occurrences, please open an issue or send a pull request.
 
+The names of the `*_test.go` source files should give an idea of the category of operations that are benchmarked.
+
 ## Example
 
 Here is a short example of benchmark results, run on a Toshiba Chromebook 64-bit running Ubuntu (LXDE) with crouton:
