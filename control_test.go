@@ -115,6 +115,24 @@ func BenchmarkSelectTrySend(b *testing.B) {
 	}
 }
 
+func BenchmarkPanicRecover(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		panicRecover()
+	}
+}
+
+func panicRecover() {
+	defer func() {
+		// a simple call to recover would be enough, but the usual way
+		// this pattern is used is to do something conditionnally if there
+		// was a panic.
+		if e := recover(); e != nil {
+			x++
+		}
+	}()
+	panic("zomg!")
+}
+
 func BenchmarkSelectTrySendBuf(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		select {
