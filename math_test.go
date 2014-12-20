@@ -14,61 +14,61 @@ var (
 	outi   int
 )
 
-func BenchmarkAbs(b *testing.B) {
+func BenchmarkMathAbs(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Abs(neg)
 	}
 }
 
-func BenchmarkCos(b *testing.B) {
+func BenchmarkMathCos(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Cos(mathv1)
 	}
 }
 
-func BenchmarkSin(b *testing.B) {
+func BenchmarkMathSin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Sin(mathv1)
 	}
 }
 
-func BenchmarkPow(b *testing.B) {
+func BenchmarkMathPow(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Pow(mathv1, mathv2)
 	}
 }
 
-func BenchmarkLog(b *testing.B) {
+func BenchmarkMathLog(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Log(mathv1)
 	}
 }
 
-func BenchmarkExp(b *testing.B) {
+func BenchmarkMathExp(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Exp(mathv1)
 	}
 }
 
-func BenchmarkSqrt(b *testing.B) {
+func BenchmarkMathSqrt(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Sqrt(mathv1)
 	}
 }
 
-func BenchmarkMax(b *testing.B) {
+func BenchmarkMathMax(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Max(mathv1, mathv2)
 	}
 }
 
-func BenchmarkMin(b *testing.B) {
+func BenchmarkMathMin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		out = math.Min(mathv1, mathv2)
 	}
 }
 
-func BenchmarkRand(b *testing.B) {
+func BenchmarkMathRand(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		outi = rand.Int()
 	}
