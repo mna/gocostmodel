@@ -40,3 +40,14 @@ func BenchmarkIfaceTypeAssertWithOk(b *testing.B) {
 		assertStra, ok = assertIface.(assertStr)
 	}
 }
+
+func BenchmarkIfaceTypeSwitch(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		switch assertIface.(type) {
+		case assertStr:
+			x++
+		default:
+			panic("unreachable")
+		}
+	}
+}
